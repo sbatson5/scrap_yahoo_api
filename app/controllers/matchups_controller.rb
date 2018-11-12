@@ -19,6 +19,6 @@ class MatchupsController < ApplicationController
 
   private
   def matchup_params
-    params.require(:matchup).permit(:season_id, :opponent_id, :manager_id, :score, :victory)
+    params.require(:matchup).permit(:season_id, :opponent_id, :manager_id, :score, :victory, :week)
   end
 end
