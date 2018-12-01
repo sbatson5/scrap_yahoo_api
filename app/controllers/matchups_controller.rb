@@ -1,6 +1,10 @@
 class MatchupsController < ApplicationController
   def index
-    render json: Matchup.all
+    @matchups = Matchup.all
+    if params[:manager_id]
+      @matchups = @matchups.select { |matchup| matchup.manager_id == params[:manager_id].to_i }
+    end
+    render json: @matchups
   end
 
   def show
