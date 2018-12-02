@@ -3,6 +3,8 @@ class MatchupsController < ApplicationController
     @matchups = Matchup.all
     if params[:manager_id]
       @matchups = @matchups.select { |matchup| matchup.manager_id == params[:manager_id].to_i }
+    elsif params[:opponent_id]
+      @matchups = @matchups.select { |matchup| matchup.opponent_id == params[:opponent_id].to_i }
     end
     render json: @matchups
   end
