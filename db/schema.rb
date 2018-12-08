@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181112221346) do
+ActiveRecord::Schema.define(version: 20181208161403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,9 +40,21 @@ ActiveRecord::Schema.define(version: 20181112221346) do
     t.integer "year", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "first_id"
+    t.bigint "second_id"
+    t.bigint "third_id"
+    t.bigint "fourth_id"
+    t.index ["first_id"], name: "index_seasons_on_first_id"
+    t.index ["fourth_id"], name: "index_seasons_on_fourth_id"
+    t.index ["second_id"], name: "index_seasons_on_second_id"
+    t.index ["third_id"], name: "index_seasons_on_third_id"
   end
 
   add_foreign_key "matchups", "managers"
   add_foreign_key "matchups", "managers", column: "opponent_id"
   add_foreign_key "matchups", "seasons"
+  add_foreign_key "seasons", "managers", column: "first_id"
+  add_foreign_key "seasons", "managers", column: "fourth_id"
+  add_foreign_key "seasons", "managers", column: "second_id"
+  add_foreign_key "seasons", "managers", column: "third_id"
 end

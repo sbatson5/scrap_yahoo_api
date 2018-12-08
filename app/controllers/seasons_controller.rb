@@ -17,8 +17,14 @@ class SeasonsController < ApplicationController
     end
   end
 
+  def update
+    @season = Season.find(params[:id])
+    @season.update(season_params)
+    render json: @season
+  end
+
   private
   def season_params
-    params.require(:season).permit(:year)
+    params.require(:season).permit(:year, :first_id, :second_id, :third_id, :fourth_id)
   end
 end
